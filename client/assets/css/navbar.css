@@ -1,0 +1,17 @@
+.active{
+    color: #ff4081;
+    font-weight: bold;
+}
+
+.noactive{
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.btnActive{
+    color: '#ff4081'
+}
+
+.btnNoActive{
+    color:'#ffffff'
+}
