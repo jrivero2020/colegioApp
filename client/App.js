@@ -10,6 +10,8 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from "@mui/material/styles"
 import { CacheProvider } from "@emotion/react"
 import createEmotionCache from "../server/createEmotionCache"
+import Menu from "./core/menu"
+
 const cache = createEmotionCache();
 
 const App = () => {
@@ -21,7 +23,8 @@ const App = () => {
     }, [])
 
     return (
-        <BrowserRouter>                
+        <BrowserRouter>   
+                    <Menu />             
             <CacheProvider value={cache}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />

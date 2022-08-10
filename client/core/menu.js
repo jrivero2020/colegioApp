@@ -35,6 +35,10 @@ const Menu = () => (
           <HomeIcon />
         </IconButton>
       </NavLink>
+      <NavLink to="/lstusuario">Usuarios
+        <Button >Usuarios</Button>
+      </NavLink>
+
     </Toolbar>
   </AppBar>
 )

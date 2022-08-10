@@ -32,6 +32,7 @@ import createEmotionCache from './createEmotionCache.js'
 import theme from './../client/theme'
 // end
 
+import Menu from '../client/core/menu.js'
 import devBundle from './devBundle.js'
 const CURRENT_WORKING_DIR = process.cwd()
 
@@ -60,6 +61,7 @@ app.get('*', (req, res) => {
     createEmotionServer(cache);
   const html = ReactDOMServer.renderToString(
     <StaticRouter location={req.url} context={context}>
+      <Menu />   
       <CacheProvider value={cache}>
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
