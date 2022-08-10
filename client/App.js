@@ -23,8 +23,8 @@ const App = () => {
     }, [])
 
     return (
-        <BrowserRouter>   
-                    <Menu />             
+        <BrowserRouter>
+            <Menu />
             <CacheProvider value={cache}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />

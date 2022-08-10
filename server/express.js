@@ -61,7 +61,7 @@ app.get('*', (req, res) => {
     createEmotionServer(cache);
   const html = ReactDOMServer.renderToString(
     <StaticRouter location={req.url} context={context}>
-      <Menu />   
+      <Menu />
       <CacheProvider value={cache}>
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
