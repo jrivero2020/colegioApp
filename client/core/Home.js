@@ -22,11 +22,11 @@ import colegio from './../assets/images/colegio.jpg'
 export default function Home() {
 
     return (
-        <Card>
-            <Typography variant="h6" >
-                Página de Inicio
-            </Typography>
-            <CardMedia component="img"
+        <Card sx={{ maxWidth: 400}} 
+        >
+          
+            <CardMedia style={{ display:'flex', justifyContent:'center' }}
+            component="img" 
                 image={colegio} alt="Patio Colegio" />
             <CardContent>
                 <Typography variant="body2" component="p">

@@ -1,3 +1,4 @@
+import * as React from 'react'
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import compress from 'compression'
@@ -11,7 +12,7 @@ import path from 'path'
 
 
 // modules for server side rendering
-import * as React from 'react'
+
 import ReactDOMServer from 'react-dom/server'
 import MainRouter from './../client/MainRouter'
 import { StaticRouter } from 'react-router-dom/server'
@@ -28,15 +29,15 @@ import createEmotionServer from '@emotion/server/create-instance'
 import createEmotionCache from './createEmotionCache.js'
 // fin nuevo de Material
 
-
+import Menu from "./../client/core/menu"
 import theme from './../client/theme'
 // end
 
-import Menu from '../client/core/menu.js'
 import devBundle from './devBundle.js'
 const CURRENT_WORKING_DIR = process.cwd()
 
 const app = express()
+
 
 // Para desarrollo 
 devBundle.compile(app)
@@ -61,7 +62,7 @@ app.get('*', (req, res) => {
     createEmotionServer(cache);
   const html = ReactDOMServer.renderToString(
     <StaticRouter location={req.url} context={context}>
-      <Menu />
+       <Menu />
       <CacheProvider value={cache}>
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

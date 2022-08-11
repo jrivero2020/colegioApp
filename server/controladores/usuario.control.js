@@ -6,7 +6,7 @@ const listaUsuarios = async (req, res, next) => {
     try {
         const usuario = await Usuarios.findAll()
         res.json(usuario)
-        next()
+       // next()
     } catch (err) {
         return res.status(500).json({ message: err.message })
     }
