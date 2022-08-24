@@ -19,7 +19,6 @@ import { StaticRouter } from 'react-router-dom/server'
 
 // import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles'
 
-
 // Nuevo de material
 //import { CssBaseline } from '@mui/material/CssBaseline'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -31,13 +30,13 @@ import createEmotionCache from './createEmotionCache.js'
 
 import Menu from "./../client/core/menu"
 import theme from './../client/theme'
+import './../client/assets/css/navbar.css'
 // end
 
 import devBundle from './devBundle.js'
 const CURRENT_WORKING_DIR = process.cwd()
 
 const app = express()
-
 
 // Para desarrollo 
 devBundle.compile(app)
@@ -49,11 +48,11 @@ app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
 app.use(cors())
-
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, '/dist')))
 
 app.use(usuariosRutas)
 app.use(autorizadoRutas)
+
 
 app.get('*', (req, res) => {
   const context = {}
@@ -66,14 +65,15 @@ app.get('*', (req, res) => {
       <CacheProvider value={cache}>
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
           <MainRouter />
+          <CssBaseline />
         </ThemeProvider>
       </CacheProvider>
     </StaticRouter>,
   );
+   
 
-  // Grab the CSS from emotion
+    // Grab the CSS from emotion
   const emotionChunks = extractCriticalToChunks(html);
   const emotionCss = constructStyleTagsFromChunks(emotionChunks);
 

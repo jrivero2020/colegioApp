@@ -25,12 +25,15 @@ const App = () => {
     return (
         <BrowserRouter>
             <Menu />
+
             <CacheProvider value={cache}>
                 <ThemeProvider theme={theme}>
-                    <CssBaseline />
                     <MainRouter />
+                    <CssBaseline />
                 </ThemeProvider>
             </CacheProvider>
+
+            
         </BrowserRouter>
     )
 }

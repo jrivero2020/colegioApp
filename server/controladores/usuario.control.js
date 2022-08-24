@@ -1,12 +1,11 @@
 import { Usuarios } from '../modelos/usuario.js'
 import { verErrorSequelize } from '../helpers/sequelizeErrores.js'
 
-const listaUsuarios = async (req, res, next) => {
+const listaUsuarios = async (req, res) => {
 
     try {
         const usuario = await Usuarios.findAll()
         res.json(usuario)
-       // next()
     } catch (err) {
         return res.status(500).json({ message: err.message })
     }
@@ -35,6 +34,15 @@ const crearUsuario = async (req, res) => {
     try {
         const newUsuario = await Usuarios.create(req.body)      
         return res.status(200).json({ message: "Registro exitoso" })
+    } catch (e) {
+        return res.status(500).json({ message: verErrorSequelize(e) })
+    }
+}
+
+const inscripcionUsuario = async (req, res) => {
+    try {
+        const newUsuario = await Usuarios.create(req.body )      
+        return res.status(200).json({ message: "Inscripción exitosa" })
     } catch (e) {
         return res.status(500).json({ message: verErrorSequelize(e) })
     }
@@ -70,4 +78,4 @@ const deleteUsuario = async (req, res) => {
     }
 }
 
-export default { userByID, leerUsuario, crearUsuario, updateUsuario, listaUsuarios, deleteUsuario }
+export default { userByID, leerUsuario, crearUsuario, updateUsuario, listaUsuarios, deleteUsuario, inscripcionUsuario }

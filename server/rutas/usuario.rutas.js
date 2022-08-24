@@ -8,9 +8,12 @@ router.route('/usuario')
     .post( usrCtrl.crearUsuario )
 
 
+router.route('/inscripcionUsuario')
+    .post( usrCtrl.inscripcionUsuario )
+
 router.route('/usuario/:Id')
-    .get(authCtrl.requireSignin, authCtrl.estaAutorizado, usrCtrl.leerUsuario)
-    .put(authCtrl.requireSignin, authCtrl.estaAutorizado, usrCtrl.updateUsuario)
+    .get(authCtrl.requireSignin,    authCtrl.estaAutorizado, usrCtrl.leerUsuario)
+    .put(authCtrl.requireSignin,    authCtrl.estaAutorizado, usrCtrl.updateUsuario)
     .delete(authCtrl.requireSignin, authCtrl.estaAutorizado, usrCtrl.deleteUsuario)
 
 router.param('Id', usrCtrl.userByID)
