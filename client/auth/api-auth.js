@@ -1,6 +1,6 @@
 const signin = async (user) => {
     try {
-        let response = fetch('/auth/signin', {
+        let response = await fetch('/auth/signin', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -9,20 +9,32 @@ const signin = async (user) => {
             credentials: 'include',
             body: JSON.stringify(user)
         })
-        return await response.json()
-    } catch (error) {
-        console.log(error)
+
+        let msgRet = await response.json()
+        
+        if (response.ok) {
+            return msgRet
+        } else {
+            throw new Error(msgRet.message)
+        }
+    } catch (err) {
+        return ({ error: err.message, message: err.message })
     }
 }
 
 const signout = async () => {
     try {
-        let response = fetch('/auth/signout', { method: 'GET' })
-        return await response.json()
-    } catch (error) {
-        console.log(error)
-
+        let response = await fetch('/auth/signout', { method: 'GET' })
+        let msgRet = await response.json()
+        console.log('signout===>msgRet', msgRet)
+        if (response.ok) {
+            return msgRet
+        } else {
+            throw new Error(msgRet.message)
+        }        
+    } catch (err) {
+        return ({ error: err.message, message: err.message })
     }
 }
 
-export { signin, signout}
+export { signin, signout }

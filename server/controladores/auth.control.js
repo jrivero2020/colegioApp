@@ -8,11 +8,11 @@ const signin = async (req, res) => {
     try {
         const usrFind = await Usuarios.findOne({ where: { NombreUsuario } });
         if (usrFind === null)
-            return res.status(404).json({ 'mensaje': 'Usuario no encontrado' })
+            return res.status(404).json({ message: 'Usuario no existe' })
 
         let valida = await usrFind.validaPassword(password)
         if (!valida)
-            return res.status(401).json({ 'mensaje': 'Usuario y password no coinciden' })
+            return res.status(401).json({ message: 'Usuario y clave no coinciden' })
 
         // Jwt
         const user = {
@@ -21,11 +21,10 @@ const signin = async (req, res) => {
         }
         const token = jwt.sign({ user }, jwtConfig.jwtSecret)
         res.cookie('t', token, { expire: new Date() + 20 })
-        return res.json({
-            token, user
-        })
+        return res.json({ token, user })
     } catch (error) {
-        return res.status(400).json({ 'mensaje': 'No pude registrar' })
+        return res.status(400).json({ message: 'No pude registrar ingreso' })
+        
     }
 }
 
@@ -56,7 +55,7 @@ const estaAutorizado = async (req, res, next) => {
     console.log(req.profile.idUsuario, req.auth.user._id, "usrRol: ", usrRol, "req.auth.user._rol", req.auth.user._rol)
     const autorizado = (req.profile && req.auth.user && req.profile.idUsuario == req.auth.user._id) || usrRol == 1
     if (!autorizado) {
-        return res.status(403).json({ error: "Usuario no está autorizado" })
+        return res.status(403).json({ message: "Usuario no está autorizado" })
     }
     next()
 }

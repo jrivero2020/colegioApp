@@ -30,7 +30,7 @@ const userByID = async (req, res, next, id) => {
 const leerUsuario = (req, res) => { return res.json(req.profile) }
 
 const crearUsuario = async (req, res) => {
-    //const { NombreUsuario,Correo,password,apat,amat,nombres,rut,dv,rol } = req.body
+
     try {
         const newUsuario = await Usuarios.create(req.body)      
         return res.status(200).json({ message: "Registro exitoso" })
@@ -48,8 +48,7 @@ const inscripcionUsuario = async (req, res) => {
     }
 }
 
-const updateUsuario = async (req, res ) => {
-    console.log( "req.profile=====>>>>>", req.profile)
+const updateUsuario = async (req, res ) => {    
     try {
         const usuario = await Usuarios.findByPk(req.profile.idUsuario)
         usuario.set(req.body)

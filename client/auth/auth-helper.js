@@ -1,8 +1,10 @@
-import signout from './api-auth'
-export default auth = {
+import { signout } from './api-auth'
+
+const auth = {
     authenticate(jwt, cb) {
         if (typeof window !== 'undefined')
             sessionStorage.setItem(jwt, JSON.stringify(jwt))
+
         cb()
     },
     isAuthenticated() {
@@ -15,12 +17,19 @@ export default auth = {
             return false
 
     },
-    clearJWT(cb) {
+    clearJWT() {
         if (typeof window !== 'undefined')
             sessionStorage.removeItem('jwt')
-        cb()
+        // cb()
         signout().then((data) => {
-            document.cookie('t=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;')
+            if (data.error) {
+                sessionStorage.removeItem('jwt')
+            } else {
+                document.cookie = "t=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"
+                
+            }
         })
     }
 }
+
+export default auth

@@ -89,18 +89,28 @@ export default function Inscripcion() {
       NombreUsuario: valores.NombreUsuario || undefined,
       password: valores.password || undefined,
     }
+    const grabarOk = {
+      grabar: true
+    }
     if (valores.password !== valores.password2) {
       setValores({ ...valores, error: "Claves no coinciden !!" })
-    } else {
+      grabarOk.grabar = false
+      
+    }
+    if (!valores.password || !valores.password2 || !valores.NombreUsuario) {
+      setValores({ ...valores, error: "Debe llenar todos los datos !!" })
+      grabarOk.grabar = false
+    }
+
+    if (grabarOk.grabar) {
       inscribe(user).then((data) => {
         if (data.error) {
           setValores({ ...valores, error: data.error })
         } else {
           setValores({ ...valores, error: '', open: true })
         }
-        console.log('Data:', data)
-      })
-      
+      }
+      )
     }
   }
 
@@ -133,63 +143,67 @@ export default function Inscripcion() {
                   id="nombreusuario"
                   label="Nombre de Usuario"
                   value={valores.name} onChange={handleChange('NombreUsuario')}
+                  onFocus={msgErrorNull}
                   autoFocus
                 />
               </Grid>
+
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  type="password"
-                  id="password"
-                  label="Clave"
-                  name="clave"
-                  autoComplete="clave"
-                  value={valores.password} 
-                  onChange={handleChange('password')}
-                  onFocus={msgErrorNull}
-                />
+                <FormControl sx={{ m: 2, width: '45ch' }} variant="outlined">
+                  <InputLabel htmlFor="password">Clave </InputLabel>
+                  <OutlinedInput
+                    id="password"
+                    type={valores.showPassword ? 'text' : 'password'}
+                    value={valores.password}
+                    onChange={handleChange('password')}
+                    onFocus={msgErrorNull}
 
-<FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={valores.showPassword ? 'text' : 'password'}
-            value={valores.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Ver la clave"
-                  onClick={handleClickShowPassword}
-                  
-                  edge="end"
-                >
-                  {valores.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="Ver la clave"
+                          onClick={handleClickShowPassword}
 
-
-
-
-
+                          edge="end"
+                        >
+                          {valores.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Clave" 
+                  />
+                </FormControl>
               </Grid>
+
+
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="clave2"
-                  label="Repita su clave"
-                  type="password"
-                  id="password2"
-                  value={valores.password2} onChange={handleChange('password2')}
-                  onFocus={msgErrorNull}
-                />
+                <FormControl sx={{ m: 2, width: '45ch' }} variant="outlined">
+                  <InputLabel htmlFor="password2">Reingrese Clave </InputLabel>
+                  <OutlinedInput
+                    id="password2"
+                    type={valores.showPassword ? 'text' : 'password'}
+                    value={valores.password2}
+                    onChange={handleChange('password2')}
+                    onFocus={msgErrorNull}
+
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="Ver la clave"
+                          onClick={handleClickShowPassword}
+
+                          edge="end"
+                        >
+                          {valores.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Reingrese Clave" 
+                  />
+                </FormControl>
               </Grid>
+
+
               {
                 valores.error &&
                 (<Typography component="p" color="error">

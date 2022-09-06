@@ -10,7 +10,6 @@ import HomeIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import {  NavLink } from 'react-router-dom';
 
-
 const Menu = () => (
   <AppBar position="static">
     <Toolbar>
@@ -30,6 +29,12 @@ const Menu = () => (
       </NavLink>
       <NavLink to="/Inscripcion">Inscripcion
         <Button >Inscripcion</Button>
+      </NavLink>
+      <NavLink to="/Signin">Ingresar
+        <Button >Ingresar</Button>
+      </NavLink>
+      <NavLink to="/Signout">Salir
+        <Button > Salir</Button>
       </NavLink>
       <NavLink to="/menu2">Menu_Lateral
         <Button >Menu_Lateral</Button>

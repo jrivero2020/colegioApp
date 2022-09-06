@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { listar } from "./api-usuario";
+import { listar, leer } from "./api-usuario";
 
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -28,7 +28,7 @@ export default function lstUsuarios() {
                 console.log(data.error)
             } else {
                 setUsuarios(data)
-                //console.log(data)
+                console.log(data)
             }
         })
         return function cleanuo() {

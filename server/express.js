@@ -57,12 +57,12 @@ app.use(autorizadoRutas)
 app.get('*', (req, res) => {
   const context = {}
   const cache = createEmotionCache();
-  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
-    createEmotionServer(cache);
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
   const html = ReactDOMServer.renderToString(
     <StaticRouter location={req.url} context={context}>
-       <Menu />
+
       <CacheProvider value={cache}>
+        <Menu />
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <MainRouter />

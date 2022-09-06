@@ -28,9 +28,15 @@ const inscribe = async (usuario) => {
             body: JSON.stringify(usuario)
         }
         )
-        return await response.json()
-    } catch (error) {
-        console.log(error)
+        let msgRet = await response.json()
+        if (response.ok) {
+            return msgRet
+        } else {
+            throw new Error(msgRet.message)
+        }
+    } catch (err) {
+        return ({ error: err.message, message: err.message })
+
     }
 }
 
