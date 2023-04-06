@@ -28,12 +28,16 @@ import createEmotionServer from '@emotion/server/create-instance'
 import createEmotionCache from './createEmotionCache.js'
 // fin nuevo de Material
 
-import Menu from "./../client/core/menu"
+import Menu from "./../client/core/menujr"
 import theme from './../client/theme'
+
+
 import './../client/assets/css/navbar.css'
 // end
 
 import devBundle from './devBundle.js'
+
+
 const CURRENT_WORKING_DIR = process.cwd()
 
 const app = express()
@@ -52,7 +56,6 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, '/dist')))
 
 app.use(usuariosRutas)
 app.use(autorizadoRutas)
-
 
 app.get('*', (req, res) => {
   const context = {}

@@ -8,6 +8,8 @@ import Signin from './auth/Signin'
 import Inscripcion from './usuario/inscripcion'
 import SwipeableTemporaryDrawer from './core/menu2'
 import auth from './../client/auth/auth-helper';
+import Carousel from './core/carousel'
+import HistoriaDetalle from './assets/data/historiaDetalle'
 
 const Signout = () => {
    auth.clearJWT()
@@ -20,15 +22,17 @@ console.log( 'location===>:', location )
 
 const MainRouter = () => {
     return (
-        <div>
+        <div style={{ paddingTop: '64px' }}>
             <Routes>
-                <Route exact path="/" element={<Home />} />
+                <Route exact path="/" element={<Carousel />} />
                 <Route exact path="/lstusuario" element={<LstUsuarios />} />
                 <Route exact path="/Signup" element={<Signup />} />
                 <Route exact path="/Inscripcion" element={<Inscripcion />} />
                 <Route exact path="/Signin" element={<Signin />} />
                 <Route exact path="/Signout" element={<Signout />} />
                 <Route exact path="/menu2" element={<SwipeableTemporaryDrawer />} />
+                <Route exact path="/Carousel" element={<Carousel />} />
+                <Route exact path="/HistoriaDetalle" element={<HistoriaDetalle />} />
                 <Route path="*" element={<NoMatch/>} />
             </Routes>
         </div>
