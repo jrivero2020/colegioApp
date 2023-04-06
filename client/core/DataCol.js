@@ -3,7 +3,9 @@ import Historia from './../assets/data/historia'
 import Mision   from './../assets/data/mision'
 
 import { Box, Grid, React } from './../assets/data/constantesMui'
+
 // ,borderRadius: '50%'
+
 export default function BasicGrid() {
   return (
     <Box sx={{ flexGrow: 1, justifyContent: 'center', bgcolor: 'primary.main' }} >
