@@ -38,6 +38,7 @@ import './../client/assets/css/navbar.css'
 import devBundle from './devBundle.js'
 
 
+
 const CURRENT_WORKING_DIR = process.cwd()
 
 const app = express()
@@ -69,14 +70,17 @@ app.get('*', (req, res) => {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <MainRouter />
-          <CssBaseline />
         </ThemeProvider>
+        <CssBaseline />
+
       </CacheProvider>
     </StaticRouter>,
   );
    
+  
 
-    // Grab the CSS from emotion
+
+     // Grab the CSS from emotion
   const emotionChunks = extractCriticalToChunks(html);
   const emotionCss = constructStyleTagsFromChunks(emotionChunks);
 

@@ -7,8 +7,9 @@ import './../css/myStyle.css'
 export default function HistoriaDetalle() {
     const navigate = useNavigate();
     return (
-        <div id="Aquicomienza" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <Box sx={{  width: '75%', marginTop:'20px', alignItems:'center' }} >
+        <div id="Aquicomienza" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '80px'}}>
+        
+            <Box sx={{  width: '50%',  alignItems:'center' }} >
                 <Grid container spacing={2} sx={{ bgcolor: 'primary.main' }}>
                     <Item sx={{ bgcolor: '#465053e0', border: '1px solid' }}>
                         <Card sx={{ minWidth: 275, border: '1px solid' }}>
@@ -20,6 +21,8 @@ export default function HistoriaDetalle() {
                             }}>
                                 <Typography fontFamily="'Tillana', cursive" variant="h3" component="div" >
                                     <span style={{ fontWeight: 'bold' }}>  Historia </span>
+                                    <br />
+                                    <br />
                                 </Typography>
                                 <Typography fontFamily="'Tillana', cursive" variant="body1" sx={{ textAlign: 'justify' }} >
                                     <span style={{ fontWeight: 'bold' }}>

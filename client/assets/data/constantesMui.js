@@ -1,9 +1,12 @@
 export {default as  React      } from 'react';
 export {default as  Card       } from '@mui/material/Card';
+export {default as  CardActionArea  } from '@mui/material/CardActionArea';
+
 export {default as  Button     } from '@mui/material/Button';
 export {default as  Typography } from '@mui/material/Typography';
 export {default as  CardContent} from '@mui/material/CardContent';
 export {default as  CardActions} from '@mui/material/CardActions';
+export {default as  CardMedia  } from '@mui/material/CardMedia';
 export {default as  Box        } from '@mui/system/Box';
 export {default as  Grid       } from '@mui/system/Unstable_Grid';
 

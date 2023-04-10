@@ -31,27 +31,21 @@ function ResponsiveAppBar() {
 
 
   return (
-    <AppBar position="fixed" style={{ position: 'fixed', height: '10%' }}>
+    <AppBar >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <img src={logo} alt="" />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-
-            sx={{
-              mr: 5,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 600,
-              fontSize: 24,
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Los Conquistadores
+        <Box sx={{ mt: '1', position: 'absolute', left: 0, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+          <img src={logo} style={{ height: '48px', marginRight: '8px', marginTop: '6px' }} />
+          <Typography variant="subtitle1" sx={{ ml: 1, lineHeight: '1' }}>
+            Colegio Los Conquistadores
           </Typography>
+          <Typography variant="subtitle1" sx={{ lineHeight: '1' }}>
+            Cerrillos
+          </Typography>
+        </Box>
+
+        <Toolbar disableGutters position="fixed" style={{ height: '90px' }} sx={{ justifyContent: 'right' }}>
+
+
 
           {/* *** Menú principal **   */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -62,6 +56,7 @@ function ResponsiveAppBar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{ marginLeft: 'auto', fontSize: '32px' }}
             >
               <MenuIcon />
             </IconButton>
@@ -94,32 +89,29 @@ function ResponsiveAppBar() {
           </Box>
           {/* *** Fin Menú principal **   */}
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
+          <Box sx={{ position: 'absolute', right: 0, display: { xs: 'none', md: 'flex' } }}>
 
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Los Conquistadores
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page, ptr) => (
-              <NavLink to={navegar[ptr]} sx={{ marginleft: "Auto" }} key={page} >
+              <NavLink to={navegar[ptr]} sx={{ marginleft: "Auto", textDecoration:'none !important' }} key={page} >
                 <Button
                   key={page}
                   onClick={() => setAnchorElNav(false)}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{
+                    my: 2,
+                    color: 'white',                    
+                    backgroundColor: '#3F51B5',
+                    '&:hover': {
+                      backgroundColor: '#757575'
+                    },
+                    fontSize: { sm: '8px', md: '12px', lg: '16px' },
+                    margin: { sm: '4px', md: '6px', lg: '12px' },
+                    '@media (min-width: 600)': {
+                      fontSize: '18px',
+                      margin: '10px'
+                    },
+                    fontWeight: 'bold',
+                    boxShadow: 'inset 0px 1px 0px rgba(255, 255, 255, 0.5), inset 0px -1px 0px rgba(0, 0, 0, 0.25), 0px 2px 2px rgba(0, 0, 0, 0.25)'
+                  }}
                 >
                   {page}
                 </Button>
@@ -128,28 +120,6 @@ function ResponsiveAppBar() {
             ))}
           </Box>
         </Toolbar>
-        { /*
-        <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, backgroundColor: 'blue' }}>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-
-            sx={{
-              mr: 5,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 600,
-              fontSize: 14,
-              color: 'inehirt',
-              textDecoration: 'none',
-            }}
-          >
-            Colegio Los Conquistadores de Cerrillos
-          </Typography>
-
-        </Box>
-          */ }
       </Container>
     </AppBar>
 

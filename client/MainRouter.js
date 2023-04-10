@@ -22,7 +22,7 @@ console.log( 'location===>:', location )
 
 const MainRouter = () => {
     return (
-        <div style={{ paddingTop: '64px' }}>
+
             <Routes>
                 <Route exact path="/" element={<Carousel />} />
                 <Route exact path="/lstusuario" element={<LstUsuarios />} />
@@ -35,7 +35,7 @@ const MainRouter = () => {
                 <Route exact path="/HistoriaDetalle" element={<HistoriaDetalle />} />
                 <Route path="*" element={<NoMatch/>} />
             </Routes>
-        </div>
+
     )
 }
 export default MainRouter

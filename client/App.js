@@ -10,6 +10,7 @@ import { CacheProvider } from "@emotion/react"
 import createEmotionCache from "../server/createEmotionCache"
 import Menu from './core/menujr'
 
+
 const cache = createEmotionCache();
 
 const App = () => {
@@ -26,10 +27,11 @@ const App = () => {
               <Menu />
 
                 <ThemeProvider theme={theme}>
-                    <CssBaseline />
                     <MainRouter />
                 </ThemeProvider>
-            </CacheProvider>            
+                <CssBaseline />
+
+            </CacheProvider>
         </BrowserRouter>
     )
 }
