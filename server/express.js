@@ -28,9 +28,10 @@ import createEmotionServer from '@emotion/server/create-instance'
 import createEmotionCache from './createEmotionCache.js'
 // fin nuevo de Material
 
+
+
 import Menu from "./../client/core/menujr"
 import theme from './../client/theme'
-
 
 import './../client/assets/css/navbar.css'
 // end
@@ -74,12 +75,10 @@ app.get('*', (req, res) => {
         <CssBaseline />
 
       </CacheProvider>
-    </StaticRouter>,
+    </StaticRouter>
   );
    
   
-
-
      // Grab the CSS from emotion
   const emotionChunks = extractCriticalToChunks(html);
   const emotionCss = constructStyleTagsFromChunks(emotionChunks);

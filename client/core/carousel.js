@@ -3,7 +3,6 @@ import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
 import Datacol from './DataCol'
 import './../assets/css/myStyle.css'
-
 import entrada from './../assets/images/Entrada1.jpg'
 import cancha1 from './../assets/images/cancha1.jpg'
 import pasillo from './../assets/images/pasillo.jpg'
@@ -11,8 +10,9 @@ import pasillo2 from './../assets/images/pasillo2.jpg'
 import patioPk from './../assets/images/Patio_PK.jpg'
 import patioChico from './../assets/images/patiochico.jpg'
 import patioPeques from './../assets/images/patiopeques.jpg'
-import nina from './../assets/images/ninaLibros.png'
+import nina from './../assets/images/ninaLibros.jpg'
 import poster from './../assets/images/poster.jpg'
+
 
 const imgCarousel = [
     {
@@ -70,10 +70,10 @@ function carousel() {
                 sx={{ bgcolor: 'primary.main' }}
             >
                 {
-                    imgCarousel.map(item =>
-                        <Paper key={item.id} >
+                    imgCarousel.map(elemento =>
+                        <Paper key={elemento.id} >
                             <div style={{ backgroundImage: `url(${nina})` }}> 
-                            <img src={item.foto} style={{ display: 'block', margin: 'auto', Width: '65vm', height: '55vh' }} />
+                            <img src={elemento.foto} style={{ display: 'block', margin: 'auto', Width: '65vm', height: '65vh' }} />
                             </div>
                         </Paper>
                     )

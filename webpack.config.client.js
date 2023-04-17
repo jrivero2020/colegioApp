@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const CURRENT_WORKING_DIR = process.cwd()
 
-const config = {
+const webpackConfig = {
     name: "browser",
     mode: "development",
     devtool: 'eval-source-map',
@@ -43,4 +43,5 @@ const config = {
     }
 }
 
-module.exports = config
+
+module.exports = webpackConfig

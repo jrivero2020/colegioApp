@@ -1,22 +1,22 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import AppBar     from '@mui/material/AppBar';
+import Box        from '@mui/material/Box';
+import Toolbar    from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
+import Menu       from '@mui/material/Menu';
+import MenuIcon   from '@mui/icons-material/Menu';
+import Container  from '@mui/material/Container';
+import Button     from '@mui/material/Button';
+import MenuItem   from '@mui/material/MenuItem';
 import logo from './../assets/images/LogoColegio_p.png'
 import { NavLink } from 'react-router-dom';
 
 
 // const pages = ['Inicio', 'Sobre Nosotros', 'Documentos', 'História', 'Contacto'];
-const pages = ['Lista Usuarios', 'Registro', 'Inscripción', 'Ingresar', 'Menú2', 'Salir', 'Carousel'];
+const pages = ['Lista Usuarios', 'Registro', 'Inscripción', 'Ingresar', 'Menú2', 'Salir', 'Carousel', 'MI Prueba'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const navegar = ['/lstusuario', '/Signup', '/Inscripcion', '/Signin', '/menu2', '/Signout', '/Carousel']
+const navegar = ['/lstusuario', '/Signup', '/Inscripcion', '/Signin', '/menu2', '/Signout', '/Carousel', '/Miprueba' ]
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(false);
@@ -25,6 +25,7 @@ function ResponsiveAppBar() {
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+    console.log("event.currentTarget:", event.currentTarget )
   };
 
   //       AppBar position="fixed" style={{ backgroundColor: '#fff', color: '#000', position: 'fixed' }}>
@@ -54,7 +55,7 @@ function ResponsiveAppBar() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={() => setAnchorElNav(true)}
               color="inherit"
               sx={{ marginLeft: 'auto', fontSize: '32px' }}
             >
@@ -62,7 +63,7 @@ function ResponsiveAppBar() {
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={anchorElNav}
+              
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
