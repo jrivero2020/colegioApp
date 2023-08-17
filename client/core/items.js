@@ -3,7 +3,6 @@ import { Paper, Button } from '@mui/material'
 
 function Item(props)
 {
-    console.log( "Llego:", props)
     return (
         <Paper >
             <p>esp1</p>

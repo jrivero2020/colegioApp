@@ -13,22 +13,19 @@ import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import IconButton from '@mui/material/IconButton';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import Person from '@mui/icons-material/Person';
-import Link from '@mui/material/Link';
+import { NavLink } from 'react-router-dom';
 
 export default function lstUsuarios() {
-
     const [usuarios, setUsuarios] = useState([])
 
     useEffect(() => {
         const abortController = new AbortController()
         const signal = abortController.signal
-
         listar(signal).then((data) => {
             if (data && data.error) {
                 console.log(data.error)
             } else {
                 setUsuarios(data)
-                console.log(data)
             }
         })
         return function cleanuo() {
@@ -37,13 +34,18 @@ export default function lstUsuarios() {
     }, [])
 
 
+    usuarios.map((item, i) => (
+        console.log( "Item, i", item,i )
+    )
+    )
+
     return (
-       
+
         <Paper elevation={4}>
             <List dense>
                 {usuarios.map((item, i) => {
-                    return <Link to={"/usuario/" + item.idUsuario} key={i}>
-                        <ListItem button>
+                    return <NavLink to={"/usuario/" + item.idUsuario} key={i}>
+                        <ListItem >
                             <ListItemAvatar>
                                 <Avatar>
                                     <Person />
@@ -69,7 +71,7 @@ export default function lstUsuarios() {
                                 </IconButton>
                             </ListItemSecondaryAction>
                         </ListItem>
-                    </Link>
+                    </NavLink>
                 })
                 }
             </List>

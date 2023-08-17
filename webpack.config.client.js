@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+
 const CURRENT_WORKING_DIR = process.cwd()
 
 const webpackConfig = {
@@ -18,23 +19,23 @@ const webpackConfig = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.(js|tsx|ts|jsx)?$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
             },
             {
-                test: /\.(ttf|eot|svg|gif|jpg|png)(\?[\s\S]+)?$/,
+                test: /\.(ttf|eot|svg|gif|jpg|png|pdf)(\?[\s\S]+)?$/,
                 use: 'file-loader'
             },
             {
                 test: /\.css$/i,
-                use: [ "css-loader"],
-              },
+                use: ["style-loader", "css-loader", ],
+            },
         ]
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
     ],
     resolve: {
         alias: {

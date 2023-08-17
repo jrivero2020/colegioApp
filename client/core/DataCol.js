@@ -1,97 +1,220 @@
-import { Box, Grid, React, Card, CardActionArea, Button, Typography, CardContent, CardActions, Item, CardMedia } from './../assets/data/constantesMui'
-import { useState } from 'react'
+import { Grid, React, Card, CardActionArea, CardMedia, Typography } from './../assets/data/constantesMui'
+import { makeStyles }  from '@mui/styles'
+import { useState }    from 'react'
 import { useNavigate } from 'react-router-dom';
+import PagPendiente    from './PagPendiente'
 
-import Vision        from './../assets/data/vision'
-import Historia      from './../assets/data/historia'
-import Mision        from './../assets/data/mision'
-import nina          from './../assets/images/poster.jpg'
-import fondoPantalla from './../assets/images/FondoPantalla.jpg'
-const  pdfurlLocal =  './../assets/pdf/inicio-escolar-2023.pdf'
+// import Vision from './../assets/data/vision'
+// import Historia from './../assets/data/historia'
+// import Mision from './../assets/data/mision'
+
+import nina               from './../assets/images/poster.jpg'
+import fondoPantalla      from './../assets/images/FondoPantalla.jpg'
+import CtaPublica         from './../assets/images/cuentaPublica2023.png'
+import ListaUtiles        from './../assets/images/ListaUtiles.png'
+import manualConvivencia  from './../assets/images/ManualConvivencia.png'
+import campaña_vacuna2023 from './../assets/images/campaña_vacuna2023.png'
+import ReunionesPA        from './../assets/images/ReunionesPA.png'
+import ResulAcadem        from './../assets/images/ResultadosAcademicos.png'
+import Jornada            from './../assets/images/Jornada.png'
+import Faldas             from './../assets/images/Faldas.png'
+import Galeria            from './../assets/images/GaleriaFotos.png'
+
+// import './../assets/css/myStyle.css'
+
+
+const useStyles = makeStyles({
+  marginAutoContainer: {
+    width: 500,
+    height: 80,
+    display: 'flex',
+    backgroundColor: 'gold',
+  },
+  marginAutoItem: {
+    margin: 'auto'
+  },
+  alignItemsAndJustifyContent: {
+    width: 900,
+    height: 280,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'pink',
+  },
+})
+
 
 export default function BasicGrid() {
+  const classes = useStyles()
+  const navigate = useNavigate();
   const [showPdf, setShowPdf] = useState(false);
 
-  const handleClick = () => {
+  const Pendiente = () => {
     setShowPdf(!showPdf);
+    { < PagPendiente /> }
   };
-  
+
+  const cargarVisorPdf = (docu) => {
+    navigate('/VisorPdfII', { state: { idArchivo: docu } })
+  }
+
+  const cargarListaUtiles = () => {
+    navigate(`/VerGrilla`);
+  }
+
+  const cargarDocenteHoras = () => {
+    navigate(`/DocenteHoras`);
+  }
+
   return (
     <div style={{ background: `url(${fondoPantalla})` }}   >
       <Grid container spacing={1} alignItems="center" justifyContent="center"  >
-        <Grid xs={12} sm={6} md={3}  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto' }}>
-          <Card sx={{ maxWidth: 380,  marginLeft:'20px' }}>
-          
-            <CardActionArea >
+        <Grid item xs={12} sm={6} md={3}>
+
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+            <CardActionArea onClick={() => cargarVisorPdf(1)} >
               <CardMedia
                 component="img"
-                height="350"
                 image={nina}
-                />
-              <CardActions sx={{ bgcolor: '#465053e0', boxShadow: 'inset 0 0 11px #503c02', justifyContent: 'center' }}>
-                <Button onClick={ handleClick } size="small" variant="contained" color="primary" >Conozca Más  {( showPdf ? <p>&nbsp; On</p>:<p>&nbsp; Off</p> )} </Button>
-              </CardActions>
+                style={{ margin: 'auto' }}
+              />
             </CardActionArea>
           </Card>
         </Grid>
-        <Grid xs={12} sm={6} md={3}  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto' }}>
-          <Card sx={{ maxWidth: 380,  marginLeft:'20px' }}>
-          
-            <CardActionArea >
+
+
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+
+            <CardActionArea onClick={() => cargarVisorPdf(2)} >
               <CardMedia
                 component="img"
-                height="350"
-                image={nina}
-                />
-             
-             
-              <CardActions sx={{ bgcolor: '#465053e0', boxShadow: 'inset 0 0 11px #503c02', justifyContent: 'center' }}>
-                <Button size="small" variant="contained" color="primary" >Conozca Más</Button>
-              </CardActions>
+                image={CtaPublica}
+                style={{ display: 'flex', margin: 'auto' }}
+
+              />
 
             </CardActionArea>
           </Card>
         </Grid>
 
-        <Grid xs={12} sm={6} md={3}  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto' }}>
-          <Card sx={{ maxWidth: 380,  marginLeft:'20px' }}>
-          
-            <CardActionArea >
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+
+            <CardActionArea onClick={() => cargarListaUtiles()} >
               <CardMedia
                 component="img"
-                height="350"
-                image={nina}
-                />
-             
-             
-              <CardActions sx={{ bgcolor: '#465053e0', boxShadow: 'inset 0 0 11px #503c02', justifyContent: 'center' }}>
-                <Button size="small" variant="contained" color="primary" >Conozca Más</Button>
-              </CardActions>
-
+                image={ListaUtiles}
+                style={{ display: 'flex', margin: 'auto' }}
+              />
             </CardActionArea>
           </Card>
         </Grid>
 
-        <Grid xs={12} sm={6} md={3}  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto' }}>
-          <Card sx={{ maxWidth: 380,  marginLeft:'20px' }}>
-          
-            <CardActionArea >
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+            <CardActionArea onClick={() => cargarVisorPdf(3)}>
               <CardMedia
                 component="img"
-                height="350"
-                image={nina}
-                />
-             
-             
-              <CardActions sx={{ bgcolor: '#465053e0', boxShadow: 'inset 0 0 11px #503c02', justifyContent: 'center' }}>
-                <Button size="small" variant="contained" color="primary" >Conozca Más</Button>
-              </CardActions>
+                image={manualConvivencia}
+                style={{ display: 'flex', margin: 'auto' }}
+              />
+
+            </CardActionArea>
+          </Card>
+        </Grid>
+        <Grid item xs={12} />
+
+
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+            <CardActionArea onClick={() => Pendiente()}>
+              <CardMedia
+                component="img"
+                image={campaña_vacuna2023}
+                style={{ display: 'flex', margin: 'auto' }}
+              />
+              {showPdf && "Pronto Disponible"}
+            </CardActionArea>
+          </Card>
+
+        </Grid>
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+            <CardActionArea onClick={() => Pendiente(3)}>
+              <CardMedia
+                component="img"
+                image={ReunionesPA}
+                style={{ display: 'flex', margin: 'auto' }}
+              />
+              {showPdf && "Pronto Disponible"}
+            </CardActionArea>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+            <CardActionArea onClick={() => Pendiente(3)}>
+              <CardMedia
+                component="img"
+                image={ResulAcadem}
+                style={{ display: 'flex', margin: 'auto' }}
+              />
+              {showPdf && "Pronto Disponible"}
+
+            </CardActionArea>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+            <CardActionArea onClick={() => cargarDocenteHoras()}>
+              <CardMedia
+                component="img"
+                image={Jornada}
+                style={{ display: 'flex', margin: 'auto' }}
+              />
+              {showPdf && "Pronto Disponible"}
+
+            </CardActionArea>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+            <CardActionArea onClick={() => Pendiente(3)}>
+              <CardMedia
+                component="img"
+                image={Faldas}
+                style={{ display: 'flex', margin: 'auto' }}
+              />
+              {showPdf && "Pronto Disponible"}
+
+            </CardActionArea>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+            <CardActionArea onClick={() => Pendiente(3)}>
+              <CardMedia
+                component="img"
+                image={Galeria}
+                style={{ display: 'flex', margin: 'auto' }}
+              />
+              {showPdf && "Pronto Disponible"}
 
             </CardActionArea>
           </Card>
         </Grid>
       </Grid>
 
+      <Grid container spacing={1} >
+        <Grid item xs={12}
+          sx={{ marginLeft: '10px', marginRight: '10px', }}
+          style={{ paddingTop: '100px', margin: 'auto' }}
+        >
+          <Typography  gutterBottom sx={{ color: 'blue' }}>
+            Los Conquistadores de Chile, Cerrillos
+          </Typography>
+        </Grid>
+      </Grid>
 
 
     </div>

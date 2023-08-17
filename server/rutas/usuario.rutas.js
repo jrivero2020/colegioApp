@@ -1,7 +1,10 @@
-import {Router} from 'express'
-import usrCtrl  from '../controladores/usuario.control.js'
-import authCtrl from '../controladores/auth.control.js'
+import {Router}     from 'express'
+import usrCtrl      from '../controladores/usuario.control.js'
+import authCtrl     from '../controladores/auth.control.js'
 const router = Router()
+
+
+// Rutas de Usuario 
 
 router.route('/usuario')
     .get(  usrCtrl.listaUsuarios)
@@ -17,5 +20,7 @@ router.route('/usuario/:Id')
     .delete(authCtrl.requireSignin, authCtrl.estaAutorizado, usrCtrl.deleteUsuario)
 
 router.param('Id', usrCtrl.userByID)
+
+
 
 export default router

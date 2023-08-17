@@ -59,8 +59,11 @@ export const Usuarios = sequelize.define('usuarios', {
     rol: {
         type: DataTypes.INTEGER(2),
     },
-}, { timestamps: true })
+}, { timestamps: true }
+)
+
 
 Usuarios.prototype.validaPassword = async function(passwordIngresada) {
     return await bcrypt.compare(passwordIngresada, this.password)
 }
+

@@ -1,4 +1,4 @@
-// Create a theme instance.
+
 import { createTheme } from '@mui/material/';
 import { blue, red, green, pink } from '@mui/material/colors';
 

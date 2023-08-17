@@ -4,6 +4,7 @@ import { expressjwt } from 'express-jwt'
 import { jwtConfig } from '../../config/config.js'
 
 const signin = async (req, res) => {
+    
     const { NombreUsuario, password } = req.body
     try {
         const usrFind = await Usuarios.findOne({ where: { NombreUsuario } });
@@ -19,11 +20,14 @@ const signin = async (req, res) => {
             _id: usrFind.idUsuario,
             _rol: usrFind.rol
         }
+
         const token = jwt.sign({ user }, jwtConfig.jwtSecret)
         res.cookie('t', token, { expire: new Date() + 20 })
+        console.log( 'Token: ', token)
         return res.json({ token, user })
     } catch (error) {
-        return res.status(400).json({ message: 'No pude registrar ingreso' })
+        console.log("El Error: ", error)
+        return res.status(400).json({ message: '*** No pude encontrar el registro***' })
         
     }
 }

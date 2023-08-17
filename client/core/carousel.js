@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@mui/material'
+import { Paper } from '@mui/material'
 import Datacol from './DataCol'
 import './../assets/css/myStyle.css'
 import entrada from './../assets/images/Entrada1.jpg'
@@ -11,7 +11,7 @@ import patioPk from './../assets/images/Patio_PK.jpg'
 import patioChico from './../assets/images/patiochico.jpg'
 import patioPeques from './../assets/images/patiopeques.jpg'
 import nina from './../assets/images/ninaLibros.jpg'
-import poster from './../assets/images/poster.jpg'
+import Bienvenidos from './../assets/images/Bienvenidos.png'
 
 
 const imgCarousel = [
@@ -52,16 +52,14 @@ const imgCarousel = [
     },
     {
         "id": 8,
-        "foto": poster,
+        "foto": Bienvenidos,
         "titulo": "Bienvenidos"
     }
-
-
 ]
 
 function carousel() {
     return (
-        <div style={{ paddingTop: '88px',  }} >
+        <div style={{ paddingTop: '88px', }} >
             <Carousel
                 animation="slide"
                 navButtonsAlwaysVisible={true}
@@ -72,8 +70,8 @@ function carousel() {
                 {
                     imgCarousel.map(elemento =>
                         <Paper key={elemento.id} >
-                            <div style={{ backgroundImage: `url(${nina})` }}> 
-                            <img src={elemento.foto} style={{ display: 'block', margin: 'auto', Width: '65vm', height: '65vh' }} />
+                            <div style={{ backgroundImage: `url(${nina})` }}>
+                                <img alt="Imagen" src={elemento.foto} style={{ display: 'block', margin: 'auto', Width: '78vm', height: '50vh' }} />
                             </div>
                         </Paper>
                     )

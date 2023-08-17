@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams,Redirect } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -59,10 +59,6 @@ export default function Signin(props) {
   let location = useLocation();
   let navigate = useNavigate();
 
-  // console.log('props==>', props )
-  // console.log('location==>', location )
-  // console.log('UseParam==>', { useParam }  )
-  // console.log('navigate==>', navigate  )
 
   const [valores, setValores] = useState({
     NombreUsuario: '',
@@ -92,33 +88,13 @@ export default function Signin(props) {
         setValores({ ...valores, error: data.error })
       } else {
         auth.authenticate(data, () => {
-          setValores({ ...valores, error: '', redirige: true })
+          setValores({ ...valores, error: '', redirige: true, password: undefined })
         })
       }
     }
     )
 
   }
-
-
-  // const { from } = props.location.state || {
-  //   from: {
-  //     pathname: '/'
-  //   }
-  // }
-
-  // const { from } = this.props.location || {
-  //   from: {
-  //     pathname: '/'
-  //   }
-  // }
-
-
-  // const { redirige } = valores
-  // if (redirige) {
-  //   return (<Redirect to={from} />)
-  // }
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -131,6 +107,7 @@ export default function Signin(props) {
             flexDirection: 'column',
             alignItems: 'center',
           }}
+          style={{ paddingTop: '88px' }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />

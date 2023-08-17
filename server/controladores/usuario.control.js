@@ -1,4 +1,5 @@
-import { Usuarios } from '../modelos/usuario.js'
+//import { Usuarios } from '../modelos/usuario.js'
+import { Usuarios } from '../modelos/modeloCole.js'
 import { verErrorSequelize } from '../helpers/sequelizeErrores.js'
 
 const listaUsuarios = async (req, res) => {
@@ -12,13 +13,12 @@ const listaUsuarios = async (req, res) => {
 }
 
 const userByID = async (req, res, next, id) => {
-    
     try {
         const usuario = await Usuarios.findByPk(id)
         if (usuario === null) {
             res.status(404).json({ 'mensaje': 'Usuario no encontrado' })
         } else {
-            usuario.dataValues.password  = undefined
+            usuario.dataValues.password = undefined
             req.profile = usuario.dataValues
             next()
         }
@@ -27,12 +27,14 @@ const userByID = async (req, res, next, id) => {
     }
 }
 
-const leerUsuario = (req, res) => { return res.json(req.profile) }
+const leerUsuario = (req, res) => {
+    return res.json(req.profile)
+}
+
 
 const crearUsuario = async (req, res) => {
-
     try {
-        const newUsuario = await Usuarios.create(req.body)      
+        const newUsuario = await Usuarios.create(req.body)
         return res.status(200).json({ message: "Registro exitoso" })
     } catch (e) {
         return res.status(500).json({ message: verErrorSequelize(e) })
@@ -41,20 +43,20 @@ const crearUsuario = async (req, res) => {
 
 const inscripcionUsuario = async (req, res) => {
     try {
-        const newUsuario = await Usuarios.create(req.body )      
+        const newUsuario = await Usuarios.create(req.body)
         return res.status(200).json({ message: "Inscripción exitosa" })
     } catch (e) {
         return res.status(500).json({ message: verErrorSequelize(e) })
     }
 }
 
-const updateUsuario = async (req, res ) => {    
+const updateUsuario = async (req, res) => {
     try {
         const usuario = await Usuarios.findByPk(req.profile.idUsuario)
         usuario.set(req.body)
         usuario.updatedAt = Date.now()
         await usuario.save()
-        usuario.password  = undefined
+        usuario.password = undefined
         res.json(usuario)
     } catch (e) {
         return res.status(500).json({ message: verErrorSequelize(e) })

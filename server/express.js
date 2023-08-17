@@ -6,6 +6,8 @@ import cors from 'cors'
 import helmet from 'helmet'
 
 import usuariosRutas from './rutas/usuario.rutas.js'
+import docenteRutas from './rutas/docente.rutas.js'
+
 import autorizadoRutas from './rutas/autorizado.rutas.js'
 import Template from './../template'
 import path from 'path'
@@ -17,7 +19,6 @@ import ReactDOMServer from 'react-dom/server'
 import MainRouter from './../client/MainRouter'
 import { StaticRouter } from 'react-router-dom/server'
 
-// import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles'
 
 // Nuevo de material
 //import { CssBaseline } from '@mui/material/CssBaseline'
@@ -29,7 +30,6 @@ import createEmotionCache from './createEmotionCache.js'
 // fin nuevo de Material
 
 
-
 import Menu from "./../client/core/menujr"
 import theme from './../client/theme'
 
@@ -37,7 +37,6 @@ import './../client/assets/css/navbar.css'
 // end
 
 import devBundle from './devBundle.js'
-
 
 
 const CURRENT_WORKING_DIR = process.cwd()
@@ -56,8 +55,12 @@ app.use(helmet())
 app.use(cors())
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, '/dist')))
 
+
 app.use(usuariosRutas)
+app.use(docenteRutas)
 app.use(autorizadoRutas)
+
+
 
 app.get('*', (req, res) => {
   const context = {}

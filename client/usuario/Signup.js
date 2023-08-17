@@ -1,6 +1,13 @@
 import React from "react";
-import { Card, CardContent, Icon, TextField, Typography } from "@mui/material";
+import {
+    Card, CardContent, Icon, TextField, Typography, CardActions, Button, Dialog,
+    DialogTitle, DialogContent, DialogContentText, DialogActions, Grid, Box
+} from "@mui/material";
+import { Link } from 'react-router-dom';
 import { useState } from "react";
+import { create } from './../usuario/api-usuario';
+import Item from "../core/Item";
+import { useRut } from "react-rut-formatter";
 
 export default function Signup() {
     const [valores, setValores] = useState({
@@ -10,88 +17,186 @@ export default function Signup() {
         apat: '',
         amat: '',
         nombres: '',
-        rut: 0,
-        dv: 0,
-        rol: 0,
+        rut: '',
+        dv: '',
+        rol: 'Profesor',
         open: false,
         error: ''
     })
+    const { rut, updateRut, isValid } = useRut();
 
     const handleChange = name => event => {
-        setValores({ ...valores, [name]: event.target.value } )
-        console.log( 'name: ', name)
-        console.log( 'event: ', event._reactName )
-        console.log( 'valor: ', event.target.value)
+        setValores({ ...valores, [name]: event.target.value })
     }
 
-    const clickSubmit = () => {
+    const clickSubmit = (event) => {
+        event.preventDefault();
         const user = {
-            NombreUsuario: values.NombreUsuario || undefined,
-            Correo: values.Correo || undefined,
-            password: values.password || undefined,
-            apat: values.apat || undefined,
-            amat: values.amat || undefined,
-            nombres: values.nombres || undefined,
-            rut: values.rut || undefined,
-            dv: values.dv || undefined,
-            rol: values.rol || undefined,
+            NombreUsuario: valores.NombreUsuario || undefined,
+            Correo: valores.Correo || undefined,
+            password: valores.password || undefined,
+            apat: valores.apat || undefined,
+            amat: valores.amat || undefined,
+            nombres: valores.nombres || undefined,
+            rut: valores.rut || undefined,
+            dv: valores.dv || undefined,
+            rol: valores.rol || undefined,
         }
+        if (
+            user.NombreUsuario === '' ||
+            user.Correo === '' || user.password === '' || user.apat === '' || user.amat === '' ||
+            user.nombres === '' || user.rut === '' || user.dv === '' || user.rol === ''
+        ) {
+            alert('Por favor, complete todos los campos');
+            return
+        }
+
+
         create(user).then((data) => {
             if (data.error) {
                 setValores({ ...valores, error: data.error })
             } else {
-                setValores({ ...volores, error: '', open: true })
+                setValores({ ...valores, error: '', open: true })
             }
         })
     }
     return (
-        <div>
-            <Card
-                sx={{
-                    maxWidth: 600,
-                    margin: 'auto',
-                    textAlign: 'center',
-                    mt: 1,
-                    pb: 2,
-                }}
-            >
-                <CardContent>
-                    <Typography
-                        sx={{
-                            mt:0,
-                            color: '#3f4771'
-                        }}
-                        variant="h5" >
-                        Registro de Usuario
+
+
+        <Grid container rowSpacing={1} sx={{
+            paddingTop: '100px',
+            alignItems: 'center', justifyContent: 'center', margin: 'auto',
+            maxWidth: '65%'
+        }} >
+            <Grid item xs={12}>
+                <Item >
+                    <Typography variant="h5" gutterBottom sx={{ color: 'blue' }}>
+                        Registro de Usuarios al Sistema
                     </Typography>
-
-                        <TextField id="nombreusuario" label="Nombre de Usuario"
-                            value={valores.name} onChange={handleChange('NombreUsuario')}
-                            margin="normal" />
-                        <br />
-                        <TextField id="correo" label="Correo electrónico"
-                            value={valores.Correo} onChange={handleChange('Correo')}
-                            margin="normal" />
-                        <br />
-                        <TextField id="password" type="password" label="clave"
-                            value={valores.password} onChange={handleChange('password')}
-                            margin="normal" />
-                        <br />
-                        <TextField id="apat"  label="ApellidoPaterno"
-                            value={valores.apat} onChange={handleChange('apat')}
-                            margin="normal" />
-                        <br />
-
-                    {
-                        valores.error && (<Typography component="p" color="error">
-                            <Icon color="error">error</Icon>
-                            {valores.error}</Typography>)
-                    }
+                </Item>
+                <br />
+                <br />
+            </Grid>
 
 
-                </CardContent>
-            </Card>
+            <Grid item xs={4}>
+                <TextField
+                    label="Nombre usuario"
+                    variant="outlined"
+                    fullWidth
+                    value={valores.name} onChange={handleChange('NombreUsuario')}
+                />
+            </Grid>
+            <Grid item xs={4}>
+                <TextField
+                    label="Contraseña"
+                    variant="outlined"
+                    fullWidth
+                    type="password"
+                    value={valores.password}
+                    onChange={handleChange('password')}
+                />
+            </Grid>
+            <Grid item xs={4}>
+                <TextField
+                    label="Repita Contraseña"
+                    variant="outlined"
+                    fullWidth
+                    type="password"
+                    value={valores.password}
+                    onChange={handleChange('password')}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <TextField
+                    label="Correo electrónico"
+                    variant="outlined"
+                    fullWidth
+                    value={valores.Correo}
+                    onChange={handleChange('Correo')}
+                />
+            </Grid>
+            <Grid item xs={4}>
+                <TextField
+                    label="Nombres"
+                    variant="outlined"
+                    fullWidth
+                    value={valores.nombres}
+                    onChange={handleChange('nombres')}
+                />
+            </Grid>
+            <Grid item xs={4}>
+                <TextField
+                    label="Apellido paterno"
+                    variant="outlined"
+                    fullWidth
+                    value={valores.apat}
+                    onChange={handleChange('apat')}
+                />
+            </Grid>
+            <Grid item xs={4}>
+                <TextField
+                    label="Apellido materno"
+                    variant="outlined"
+                    fullWidth
+                    value={valores.amat}
+                    onChange={handleChange('amat')}
+                />
+            </Grid>
+            <Grid item xs={4}>
+                <TextField
+                    label="RUT"
+                    variant="outlined"
+                    fullWidth
+                    //value={valores.rut}
+                    value={rut.formatted}
+                    onChange={handleChange('rut')}
+                />
+            </Grid>
+            <Grid item xs={4}>
+                <TextField
+                    label="DV"
+                    variant="outlined"
+                    fullWidth
+                    value={valores.dv}
+                    onChange={handleChange('dv')}
+                />
+            </Grid>
+            <Grid item xs={4}>
+                <TextField sx={{ opacity: 0.5, cursor: 'not-allowed', }}
+                    disabled
+                    label="Rol"
+                    variant="outlined"
+                    fullWidth
+                    value={valores.rol}
+                // onChange={handleChange('rol')}
+                />
+            </Grid>
 
-        </div>
+            <CardActions>
+                <Button color="primary" variant="contained" onClick={clickSubmit} >Enviar</Button>
+            </CardActions>
+
+            <Dialog open={valores.open} disableBackdropClick={true}>
+                <DialogTitle>Nueva Cuenta</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Nueva cuenta creada exitosamente.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Link to="/signin">
+                        <Button color="primary" autoFocus="autoFocus" variant="contained">
+                            Ingresar
+                        </Button>
+                    </Link>
+                </DialogActions>
+            </Dialog>
+        </Grid>
+
     )
 };
+
+
+
+

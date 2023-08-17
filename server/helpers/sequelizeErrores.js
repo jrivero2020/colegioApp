@@ -18,7 +18,7 @@ export const verErrorSequelize = (e) => {
             msg = e.parent.sqlMessage 
             break
         default:
-            msg = e.name
+            msg = e.errors[0].message
     
     }
 

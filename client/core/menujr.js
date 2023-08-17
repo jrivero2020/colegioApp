@@ -14,9 +14,9 @@ import { NavLink } from 'react-router-dom';
 
 
 // const pages = ['Inicio', 'Sobre Nosotros', 'Documentos', 'História', 'Contacto'];
-const pages = ['Lista Usuarios', 'Registro', 'Inscripción', 'Ingresar', 'Menú2', 'Salir', 'Carousel', 'MI Prueba'];
+const pages = ['Inicio','Lista Usuarios', 'Registro', 'Inscripción', 'Ingresar', 'Menú2', 'Salir'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const navegar = ['/lstusuario', '/Signup', '/Inscripcion', '/Signin', '/menu2', '/Signout', '/Carousel', '/Miprueba' ]
+const navegar = ['/Home','/lstusuario', '/Signup', '/Inscripcion', '/Signin', '/menu2', '/Signout' ]
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(false);
@@ -25,7 +25,7 @@ function ResponsiveAppBar() {
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-    console.log("event.currentTarget:", event.currentTarget )
+
   };
 
   //       AppBar position="fixed" style={{ backgroundColor: '#fff', color: '#000', position: 'fixed' }}>
@@ -35,7 +35,7 @@ function ResponsiveAppBar() {
     <AppBar >
       <Container maxWidth="xl">
         <Box sx={{ mt: '1', position: 'absolute', left: 0, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-          <img src={logo} style={{ height: '48px', marginRight: '8px', marginTop: '6px' }} />
+          <img src={logo} alt="Logo" style={{ height: '48px', marginRight: '8px', marginTop: '6px' }} />
           <Typography variant="subtitle1" sx={{ ml: 1, lineHeight: '1' }}>
             Colegio Los Conquistadores
           </Typography>

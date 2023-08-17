@@ -26,7 +26,6 @@ const signout = async () => {
     try {
         let response = await fetch('/auth/signout', { method: 'GET' })
         let msgRet = await response.json()
-        console.log('signout===>msgRet', msgRet)
         if (response.ok) {
             return msgRet
         } else {
