@@ -1,4 +1,3 @@
-
 const create = async (usuario) => {
     try {
         let response = await fetch('/usuario/', {
@@ -32,10 +31,12 @@ const inscribe = async (usuario) => {
         if (response.ok) {
             return msgRet
         } else {
+            console.log("inscribe(Dentro de try)===>", msgRet.message)
             throw new Error(msgRet.message)
         }
     } catch (err) {
-        return ({ error: err.message, message: err.message })
+        console.log("inscribe catch ===>", err )
+        return ({ error: "Error de Inscribe " + err, message: err })
 
     }
 }
