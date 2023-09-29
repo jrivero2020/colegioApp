@@ -1,4 +1,3 @@
-
 const create = async (docente) => {
     try {
         let response = await fetch('/Docente/', {
@@ -106,4 +105,19 @@ const remove = async (params, credential) => {
     }
 }
 
-export { create, leer, update, remove, inscribe, docenteListarHoras }
+const getDatosCert = async (params, signal) => {
+    console.log("en api-docente, getDatosCert. opcion", params, "   Rut=>", params.rut)
+    try {
+        let response = await fetch('/listaAlumnosByRut/' + params.rut, {
+            method: 'GET',
+            signal: signal,
+        },
+        )
+        return await response.json()
+    } catch (error) {
+        console.log("Este error me arroja ===>", error)
+    }
+}
+
+export { create, leer, update, remove, inscribe, docenteListarHoras, getDatosCert }
+

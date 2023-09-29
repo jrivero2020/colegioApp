@@ -1,15 +1,19 @@
 import React, { useEffect } from "react";
 import {
-    TextField, Typography, CardActions, Button, Dialog,
-    DialogTitle, DialogContent, DialogContentText, DialogActions, Grid, Box
+    TextField, Typography, CardActions, Button, Grid
 } from "@mui/material";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { getDatosCert } from './../docentes/api-docentes'
 import Item from "../core/Item";
 import { FmtoRut, validarRut, QuitaPuntos } from "../assets/js/FmtoRut";
+// import ImprimeCertificado from './ImprimeCertificado'
+
 
 export default function CertAlumnoRegular() {
+
+    const navigate = useNavigate();
+
     const [valores, setValores] = useState({
         apat: '',
         amat: '',
@@ -22,7 +26,8 @@ export default function CertAlumnoRegular() {
         letra: '',
         nro_matricula: '',
         open: false,
-        error: ''
+        error: '',
+        parapresentar: ''
     })
 
     const [validations, setValidations] = useState({
@@ -68,7 +73,17 @@ export default function CertAlumnoRegular() {
         setValores({ ...valores, rut: QuitaPuntos(fRut.slice(0, -1)), dv: fRut.slice(-1) })
 
     }
+    const cierreDialog = () => {
+        setValores({ ...valores, open: false })
+    }
 
+    const cargarPrintCert = (valores) => {
+        console.log("Antes de llamada a ImprimeCertificado **** Valores:==>", valores)
+        navigate('/ImprimeCertificado', { state: { dataAl: valores } })
+        // navigate('/VisorPdfII', { state: { idArchivo: docu } })
+    }
+
+    
     const clickSubmit = (event) => {
         event.preventDefault();
 
@@ -119,6 +134,7 @@ export default function CertAlumnoRegular() {
         })
     }
 
+
     return (
         <Grid container rowSpacing={1} sx={{
             paddingTop: '100px',
@@ -135,71 +151,48 @@ export default function CertAlumnoRegular() {
                 <br />
             </Grid>
 
-            <Grid item xs={4}>
-                <TextField
-                    label="Nombres"
-                    variant="outlined"
-                    fullWidth
-                    value={valores.nombres}
-                    onChange={handleChange('nombres')}
-                />
-            </Grid>
-            <Grid item xs={4}>
-                <TextField
-                    label="Apellido paterno"
-                    variant="outlined"
-                    fullWidth
-                    value={valores.apat}
-                    onChange={handleChange('apat')}
-                />
-            </Grid>
-            <Grid item xs={4}>
-                <TextField
-                    label="Apellido materno"
-                    variant="outlined"
-                    fullWidth
-                    value={valores.amat}
-                    onChange={handleChange('amat')}
-                />
-            </Grid>
-
             <Grid item xs={12}>
-                <TextField id="rut" label="Rut"
+                <TextField id="rut" label="Rut del Alumno"
                     value={fRut} onChange={manejoCambiofRut('fRrut')}
                     margin="normal" />
 
+            </Grid>
+            <br />
+            <br />
+            <CardActions>
+                <Button color="primary" variant="contained" onClick={clickSubmit} >Enviar</Button>
+            </CardActions>
 
-                <CardActions>
-                    <Button color="primary" variant="contained" onClick={clickSubmit} >Enviar</Button>
-                </CardActions>
+            {valores.open ? (
+                cargarPrintCert({valores}) 
+            ) : null
+            }
 
-                <Dialog open={valores.open}>
-                    <DialogTitle>Datos Certificado</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            rut {valores.rut}-{valores.dv}, Nombres : {valores.nombres}, Apellido {valores.apat}
-                        </DialogContentText>
-                        <DialogContentText>
+            { /*
+            <Dialog open={valores.open}>
+                <DialogTitle>
+                    <Typography variant="h5" gutterBottom sx={{ color: 'blue' }}>
+                        CERTIFICADO DE ALUMNO REGULAR
+                    </Typography>
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        rut {valores.rut}-{valores.dv}, Nombres : {valores.nombres}, Apellido {valores.apat}
+                    </DialogContentText>
+                    <DialogContentText>
                         {valores.cod_ense},
                         Curso: {valores.desc_grado}-{valores.letra}, Gnero:{valores.genero}, Matrícula:{valores.nro_matricula}
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        {                console.log("valores===>", valores)
-
-
-                        }
-                        { /*
-                    <Link to="/signin">
-                        <Button color="primary" autoFocus="autoFocus" variant="contained">
-                            Ingresar
-                        </Button>
-                    </Link>
-                    */
-                        }
-                    </DialogActions>
-                </Dialog>
-            </Grid>
+                    </DialogContentText>
+                    <DialogContentText>
+                        para {valores.parapresentar},
+                    </DialogContentText>
+                </DialogContent>
+           
+                <DialogActions>
+                    <Button color="primary" variant="contained" onClick={cierreDialog} >OK</Button>
+                </DialogActions>
+            </Dialog>
+    */ }
         </Grid>
 
     )
