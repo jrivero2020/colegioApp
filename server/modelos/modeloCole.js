@@ -58,6 +58,11 @@ export const Usuarios = sequelize.define('usuarios', {
     },
     rol: {
         type: DataTypes.INTEGER(2),
+        validate: {
+            isNumeric: { args: true, msg: "Debe ingresar solamente números" },
+            len: { args: [2], msg: "El largo máximo 2 dígitos" },
+            isInt: true,
+        }        
     },
 }, { timestamps: true }
 
@@ -115,3 +120,41 @@ export const Docente = sequelize.define('docente', {
     }
 }, { freezeTableName: true, timestamps: false })
 
+
+
+export const Matricula = sequelize.define('matricula', {
+    nro_matricula: {
+        type: DataTypes.INTEGER,
+    },
+    rut: {
+        type: DataTypes.INTEGER,
+    },
+    dv: {
+        type: DataTypes.STRING(1),
+    },    
+    apat: {
+        type: DataTypes.STRING(80),
+    },    
+    amat: {
+        type: DataTypes.STRING(80),
+    },    
+    nombres: {
+        type: DataTypes.STRING(80),
+    },
+    genero: {
+        type: DataTypes.STRING(10),
+    }
+    ,
+    cod_ense: {
+        type: DataTypes.INTEGER,
+    }
+    ,
+    letra: {
+        type: DataTypes.STRING(1),
+    }
+    ,
+    desc_grado: {
+        type: DataTypes.STRING(60),
+    }
+}, { freezeTableName: true }
+)

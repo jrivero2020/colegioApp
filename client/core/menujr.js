@@ -14,9 +14,9 @@ import { NavLink } from 'react-router-dom';
 
 
 // const pages = ['Inicio', 'Sobre Nosotros', 'Documentos', 'História', 'Contacto'];
-const pages = ['Inicio','Lista Usuarios', 'Registro', 'Inscripción', 'Ingresar', 'Menú2', 'Salir'];
+const pages = ['Inicio','Lista Usuarios', 'Registro', 'Inscripción', 'Ingresar', 'Ficha Alumno', 'Lab','Salir'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const navegar = ['/Home','/lstusuario', '/Signup', '/Inscripcion', '/Signin', '/menu2', '/Signout' ]
+const navegar = ['/Home','/lstusuario', '/Signup', '/Inscripcion', '/Signin', '/FichaDelAlumno', '/LabTabs', '/Signout' ]
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(false);

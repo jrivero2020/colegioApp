@@ -6,7 +6,7 @@ const CURRENT_WORKING_DIR = process.cwd()
 const webpackConfig = {
     name: "browser",
     mode: "development",
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     entry: [
         'webpack-hot-middleware/client?reload=true',
         path.join(CURRENT_WORKING_DIR, '/client/main.js')
@@ -17,6 +17,7 @@ const webpackConfig = {
         publicPath: '/dist/'
     },
     module: {
+        
         rules: [
             {
                 test: /\.(js|tsx|ts|jsx)?$/,
@@ -40,7 +41,7 @@ const webpackConfig = {
     resolve: {
         alias: {
             'react-dom': '@hot-loader/react-dom'
-        }
+        }, extensions: ['.js', '.jsx']
     }
 }
 

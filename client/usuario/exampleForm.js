@@ -437,3 +437,74 @@ Verifica que estás utilizando una versión de React que soporte los módulos ES
 Si después de seguir estos pasos aún tienes problemas para importar la librería react-rut-formatter como un módulo ES, te recomendaría revisar la documentación oficial del paquete y asegurarte de que no haya problemas específicos con la versión que estás utilizando o con tu entorno de desarrollo. También podrías intentar buscar soluciones en foros o comunidades en línea relacionadas con React y la importación de módulos ES.
 
 
+import React, { useState } from 'react';
+import { Grid, TextField } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
+
+const MyForm = () => {
+  const [valores, setValores] = useState({
+    name: '',
+    password: '',
+  });
+
+  const [validations, setValidations] = useState({
+    name: false,
+    password: false,
+  });
+
+  const handleChange = (campo) => (event) => {
+    setValores({ ..valores, [campo]: event.target.value });
+  };
+
+  const validateField = (campo) => {
+    // Aquí puedes realizar tus validaciones personalizadas para cada campo
+    // Por ejemplo:
+    if (campo === 'name' && valores.name.trim() === '') {
+      return false;
+    }
+    if (campo === 'password' && valores.password.length < 6) {
+      return false;
+    }
+    return true;
+  };
+
+  const handleBlur = (campo) => () => {
+    setValidations({ ...validations, [campo]: validateField(campo) });
+  };
+
+  return (
+    <Grid container spacing={2} alignItems="center">
+      <Grid item xs={4}>
+        <TextField
+          label="Nombre usuario"
+          variant="outlined"
+          fullWidth
+          value={valores.name}
+          onChange={handleChange('name')}
+          onBlur={handleBlur('name')}
+          error={!validations.name}
+          InputProps={{
+            endAdornment: validations.name && <CheckIcon color="success" />,
+          }}
+        />
+      </Grid>
+      <Grid item xs={4}>
+        <TextField
+          label="Contraseña"
+          variant="outlined"
+          fullWidth
+          type="password"
+          value={valores.password}
+          onChange={handleChange('password')}
+          onBlur={handleBlur('password')}
+          error={!validations.password}
+          InputProps={{
+            endAdornment: validations.password && <CheckIcon color="success" />,
+          }}
+        />
+      </Grid>
+    </Grid>
+  );
+};
+
+export default MyForm;

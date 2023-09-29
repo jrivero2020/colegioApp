@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\jr\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js init
+  C:\Program Files\nodejs\node.exe C:\Users\jr\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js upgrade
 
 PATH: 
-  C:\Users\jr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\jr\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Users\jr\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\jr\AppData\Roaming\npm;C:\Program Files\nodejs;C:\Users\jr\AppData\Local\Yarn\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\jr\AppData\Local\Microsoft\WindowsApps;C:\editores\Microsoft VS Code\bin;C:\Users\jr\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\jr\AppData\Roaming\npm;C:\Program Files (x86)\IDM Computer Solutions\UltraEdit;C:\Users\jr\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Users\jr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\jr\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Users\jr\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\jr\AppData\Roaming\npm;C:\Program Files\nodejs;C:\Users\jr\AppData\Local\Yarn\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\jr\AppData\Local\Microsoft\WindowsApps;C:\Users\jr\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\jr\AppData\Roaming\npm;C:\Program Files (x86)\IDM Computer Solutions\UltraEdit;C:\Users\jr\AppData\Local\Yarn\bin;C:\Users\jr\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.19
@@ -14,13 +14,8 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: Can't answer a question unless a user TTY
-      at ConsoleReporter.question (C:\Users\jr\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:92864:59)
-      at Object.<anonymous> (C:\Users\jr\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:85054:38)
-      at Generator.next (<anonymous>)
-      at step (C:\Users\jr\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
-      at C:\Users\jr\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
-      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)
 
 npm manifest: 
   {
@@ -73,6 +68,7 @@ npm manifest:
       "react-material-ui-carousel": "^3.4.2",
       "react-router": "^6.10.0",
       "react-router-dom": "^6.10.0",
+      "react-rut-formatter": "^0.2.2",
       "react-scripts": "5.0.0",
       "react-swipeable-views": "^0.14.0",
       "sequelize": "^6.31.0",
@@ -9065,7 +9061,7 @@ Lockfile:
       strip-ansi "^6.0.1"
       text-table "^0.2.0"
   
-  react-dom@^17.0.1:
+  react-dom@^17.0.1, react-dom@^17.0.2:
     version "17.0.2"
     resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
     integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
@@ -9153,6 +9149,14 @@ Lockfile:
     integrity sha512-Nrg0BWpQqrC3ZFFkyewrflCud9dio9ME3ojHCF/WLsprJVzkq3q3UeEhMCAW1dobjeGbWgjNn/PVF6m46ANxXQ==
     dependencies:
       "@remix-run/router" "1.5.0"
+  
+  react-rut-formatter@^0.2.2:
+    version "0.2.2"
+    resolved "https://registry.yarnpkg.com/react-rut-formatter/-/react-rut-formatter-0.2.2.tgz#96a200b3cce16cc7dc72965d50c71d3be6a61ff3"
+    integrity sha512-TzJY9Wm5Nx7H/bngHhYUwNIkrg9TbIf5Jy473IpNH1nfCfes5sqTxdHdsEgXcxoragy9E9TamrZ/GTJVv0ehOQ==
+    dependencies:
+      react "^17.0.2"
+      react-dom "^17.0.2"
   
   react-scripts@5.0.0:
     version "5.0.0"
@@ -9250,7 +9254,7 @@ Lockfile:
       loose-envify "^1.4.0"
       prop-types "^15.6.2"
   
-  react@^17.0.1:
+  react@^17.0.1, react@^17.0.2:
     version "17.0.2"
     resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
     integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==

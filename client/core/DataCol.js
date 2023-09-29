@@ -4,9 +4,6 @@ import { useState }    from 'react'
 import { useNavigate } from 'react-router-dom';
 import PagPendiente    from './PagPendiente'
 
-// import Vision from './../assets/data/vision'
-// import Historia from './../assets/data/historia'
-// import Mision from './../assets/data/mision'
 
 import nina               from './../assets/images/poster.jpg'
 import fondoPantalla      from './../assets/images/FondoPantalla.jpg'
@@ -19,6 +16,7 @@ import ResulAcadem        from './../assets/images/ResultadosAcademicos.png'
 import Jornada            from './../assets/images/Jornada.png'
 import Faldas             from './../assets/images/Faldas.png'
 import Galeria            from './../assets/images/GaleriaFotos.png'
+import CertARegular       from './../assets/images/CertificadoARegular.png'
 
 // import './../assets/css/myStyle.css'
 
@@ -65,6 +63,12 @@ export default function BasicGrid() {
   const cargarDocenteHoras = () => {
     navigate(`/DocenteHoras`);
   }
+
+  const CertAlumnoRegularPrint = () => {
+    navigate(`/CertAlumnoRegular`);
+  }
+
+
 
   return (
     <div style={{ background: `url(${fondoPantalla})` }}   >
@@ -123,21 +127,34 @@ export default function BasicGrid() {
             </CardActionArea>
           </Card>
         </Grid>
+
         <Grid item xs={12} />
+
+        <Grid item xs={12} sm={6} md={3} >
+          <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
+            <CardActionArea onClick={() => CertAlumnoRegularPrint()}>
+              <CardMedia
+                component="img"
+                image={CertARegular}
+                style={{ display: 'flex', margin: 'auto' }}
+              />
+
+            </CardActionArea>
+          </Card>
+        </Grid>
 
 
         <Grid item xs={12} sm={6} md={3} >
           <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>
-            <CardActionArea onClick={() => Pendiente()}>
+            <CardActionArea onClick={() => Pendiente(3)} >
               <CardMedia
                 component="img"
                 image={campaña_vacuna2023}
                 style={{ display: 'flex', margin: 'auto' }}
               />
-              {showPdf && "Pronto Disponible"}
+
             </CardActionArea>
           </Card>
-
         </Grid>
         <Grid item xs={12} sm={6} md={3} >
           <Card sx={{ maxWidth: 300, marginLeft: '20px' }}>

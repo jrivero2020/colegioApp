@@ -11,8 +11,8 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 // ************************************************************************
 
 import ListaUtiles from './../assets/images/ListaUtiles.png'
-import './../../client/assets/css/dlCore_index.css'
-import './../../client/assets/css/dlStyles_index.css'
+import '../assets/css/dlCore_index.css'
+import '../assets/css/dlStyles_index.css'
 
 const WorkerMinJs = "dist/pdfworkermin.js"
 const UtilesDoc = ["dist/pdf/Lut_prekinder23.pdf", "dist/pdf/lut_kinder23.pdf", "dist/pdf/Lut_basica23.pdf"]

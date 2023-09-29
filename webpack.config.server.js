@@ -13,10 +13,11 @@ const config = {
         libraryTarget: "commonjs2"
     },
     externals: [nodeExternals()],
+    
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|tsx|ts|jsx)?$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
             },
