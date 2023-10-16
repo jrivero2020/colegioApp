@@ -7,6 +7,14 @@ export const sequelize = new Sequelize(
     mybdSql.password,
     {
         host: mybdSql.host,
-        dialect: mybdSql.dialect
+        dialect: mybdSql.dialect,
+        define: {
+            timestamps: false,
+            createdAt: false,
+            updatedAt: false,
+            underscored: true,
+            id: false,
+        },
     }
+    
 )

@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'
 import { sequelize } from "../bdatos/bdatos.js"
 import bcrypt, { hash } from 'bcrypt'
 
-export const Usuarios = sequelize.define('usuarios', {
+export const Usuarios = sequelize.define('Usuarios', {
     idUsuario: {
         type: DataTypes.INTEGER,
         primaryKey: true,

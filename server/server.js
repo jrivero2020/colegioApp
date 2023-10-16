@@ -6,11 +6,12 @@ import {sequelize} from './bdatos/bdatos.js'
 async function main(){
     try{
         //await sequelize.sync( {alter: true}) // actualiza cualquier cambio en la estructura
-        await sequelize.sync()
+
+        console.log('Usando alter: true==> la estructura ante cualquier cambio')
         app.listen( config.nodeport) 
         
-    }catch(err){
-        console.log('No pude conectarme a MySql', err)
+    }catch(e){
+        console.log(' *************  No pude conectarme a MySql ************=>>>', e)
     }
 }
 
